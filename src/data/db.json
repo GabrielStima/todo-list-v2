@@ -1,0 +1,9 @@
+{
+  "tasks": [],
+  "lanes": [
+    {
+      "id": "1",
+      "title": "New Lane"
+    }
+  ]
+}

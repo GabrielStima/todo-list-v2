@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+    --principal-color: #3A5A40;
+    --second-color: #588157;
+    --third-color: #FFFFFF;
+    --fourth-color: #111111;
+    --font-family: 'Inter';
+}
+
+body {
+    font-family: var(--font-family);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.app {
+    display: flex;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    padding-top: 70px;
+    width: 100%;
+}

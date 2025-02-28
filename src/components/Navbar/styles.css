@@ -1,0 +1,22 @@
+.navbar {
+    display: flex;
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    background-color: var(--principal-color);
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.2);
+    padding: 10px 0;
+    color: var(--third-color);
+    justify-content: space-between;
+
+    .menu {
+        display: flex;
+        list-style-type: none;
+    }
+
+    .profile {
+        display: flex;
+        align-items: center;
+        margin-right: 30px;
+    }
+}

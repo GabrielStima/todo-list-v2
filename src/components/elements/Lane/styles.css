@@ -1,0 +1,45 @@
+.lane {
+   min-width: 302px;
+   min-height: 305px;
+   margin-right: 30px; 
+   border-radius: 10px;
+   padding: 20px;
+   background-color: var(--principal-color);
+   color: var(--third-color);
+
+    .lane-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 20px;
+
+        p {
+            margin: 0;
+        }
+
+        svg {
+            cursor: pointer;
+        }
+    }
+
+    .lane-body {
+        min-height: 80%;
+    }
+
+    .lane-footer {
+        border-top: 1px solid var(--third-color);
+
+        button {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            justify-content: center;
+            background-color: transparent;
+            border: none;
+            color: var(--third-color);
+            font-size: 17px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+    }
+}
