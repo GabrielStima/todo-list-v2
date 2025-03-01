@@ -20,15 +20,15 @@ export const NavbarItem = ({ children, url, isCollapsed = false, itemList = [] }
                 <path
                     d="M4.75 7.125L9.5 11.875L14.25 7.125"
                     stroke="white"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                 />
                 </svg>
                 {children}
-                <div class="dropdown-content">
-                    {itemList.map((item) => (
-                        <a href="#">{item.title}</a>
+                <div className="dropdown-content">
+                    {itemList.map((item, index) => (
+                        <a href="#" key={index}>{item.title}</a>
                     ))}
                 </div>
             </>

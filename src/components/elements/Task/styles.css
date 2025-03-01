@@ -1,0 +1,14 @@
+.task {
+    margin: 10px 0;
+    height: 40px;
+    background-color: var(--second-color);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+
+    h2 {
+        font-size: 15px;
+        font-weight: 400;
+    }
+}

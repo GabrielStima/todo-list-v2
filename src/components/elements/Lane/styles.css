@@ -1,6 +1,6 @@
 .lane {
    min-width: 302px;
-   min-height: 305px;
+   overflow-y: auto;
    margin-right: 30px; 
    border-radius: 10px;
    padding: 20px;
@@ -13,8 +13,9 @@
         align-items: center;
         font-size: 20px;
 
-        p {
+        h2 {
             margin: 0;
+            font-size: 20px;
         }
 
         svg {
@@ -23,7 +24,7 @@
     }
 
     .lane-body {
-        min-height: 80%;
+        min-height: 87%;
     }
 
     .lane-footer {

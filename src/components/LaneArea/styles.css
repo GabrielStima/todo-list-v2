@@ -1,8 +1,9 @@
 .lane-area {
     width: 78vw;
+    height: 80vh;
     display: flex;
     margin: 30px;
-    overflow-x: auto;
+    overflow: auto;
     white-space: nowrap;
     
     .add-lane {
