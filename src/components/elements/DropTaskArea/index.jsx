@@ -1,18 +1,16 @@
 import React, { useState } from 'react'
 import './styles.css'
 
-export const DropTaskArea = ({onDrop, currentDragTask}) => {
+export const DropTaskArea = ({onDrop}) => {
     const [showDropArea, setShowDropArea] = useState(false)
 
     return (
       <section className={showDropArea ? "drop-task-area" : "hide-drop-task-area"}        
-        onDragEnter={() => currentDragTask && setShowDropArea(true)}
+        onDragEnter={() => setShowDropArea(true)}
         onDragLeave={() => setShowDropArea(false)}
         onDrop={() => {
-          if (currentDragTask) {
-            onDrop();
-            setShowDropArea(false);
-          }
+          onDrop();
+          setShowDropArea(false);
         }}
         onDragOver={(event) => event.preventDefault()}
       >

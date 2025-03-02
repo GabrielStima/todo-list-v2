@@ -1,0 +1,101 @@
+.modal-container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 3;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    .modal {
+        background-color: white;
+        border-radius: 5px;
+        padding: 2rem;
+        width: 762px;
+
+        .modal-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 50px;
+
+            h3 {
+                width: 90%;
+                text-align: center;
+                font-size: 36px;
+                font-weight: 400;
+                color: var(--principal-color);
+                margin: 0;
+            }
+
+            svg {
+                cursor: pointer;
+            }
+        }
+
+        .modal-body {
+            .form-group {
+                display: flex;
+                flex-direction: column;
+                margin: 20px 0;
+
+                label {
+                    font-size: 24px;
+                    margin-bottom: 10px;
+                    color: var(--principal-color);
+                    
+                    span {
+                        font-size: 16px;
+                    }
+                }
+
+                input {
+                    height: 40px;
+                    font-size: 16px;
+                    padding: 0 10px;
+                    border: 1px solid var(--principal-color);
+                    border-radius: 5px;
+                    font-family: var(--font-family);
+                }
+
+                textarea {
+                    padding: 10px;
+                    border: 1px solid var(--principal-color);
+                    border-radius: 5px;
+                    font-family: var(--font-family);
+                }
+
+                button {
+                    width: 129px;
+                    font-size: 24px;
+                    font-family: var(--font-family);
+                    border-radius: 5px;
+                    background-color: var(--principal-color);
+                    color: white;
+                    border: none;
+                    align-self: flex-end;
+                    padding: 10px;
+                    
+                    &:hover {
+                        cursor: pointer;
+                        background-color: var(--second-color);
+                    }
+                }
+            }
+
+            .modal-footer {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                gap: 10px;
+
+                .delete {
+                    background-color: #654444;
+                }
+            }
+        }
+    }
+}

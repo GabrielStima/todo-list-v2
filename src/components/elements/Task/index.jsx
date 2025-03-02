@@ -3,7 +3,7 @@ import axios from 'axios'
 import { ChangeableTitle } from '../ChangeableTitle'
 import './styles.css'
 
-export const Task = ({id, title, refresh, setCurrentDragTask}) => {
+export const Task = ({id, title, description, refresh, setCurrentDragTask, toggleModal}) => {
     const [taskTitle, setTaskTitle] = useState(title);
 
     const handleNameChange = (e) => {
@@ -20,7 +20,7 @@ export const Task = ({id, title, refresh, setCurrentDragTask}) => {
     }
 
   return (
-    <div className='task' draggable onDragStart={() => setCurrentDragTask(id)} onDragEnd={() => setCurrentDragTask(null)}>
+    <div className='task' onDoubleClick={() => toggleModal({id, title, description})} draggable onDragStart={() => setCurrentDragTask(id)} onDragEnd={() => setCurrentDragTask(null)}>
         <ChangeableTitle handleNameChange={handleNameChange} title={taskTitle} onBlur={updateTaskName}/>
     </div>
   )

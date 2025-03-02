@@ -5,9 +5,10 @@ import {Lane} from '../elements/Lane'
 import {DropLaneArea} from '../elements/DropLaneArea'
 import './styles.css'
 
-export const LaneArea = () => { 
+export const LaneArea = ({toggleModal}) => { 
   const [lanes, setLanes] = useState([]);
   const [currentDragLane, setCurrentDragLane] = useState(null);
+  const [currentDragTask, setCurrentDragTask] = useState(null);
 
   useEffect(()=>{
     getLanes();
@@ -31,6 +32,7 @@ export const LaneArea = () => {
   }
 
   const getLanes = () => {
+    setLanes([])
     axios.get('http://localhost:3001/lanes')
     .then((response)=>{
       let temp = response.data;
@@ -65,8 +67,8 @@ export const LaneArea = () => {
         lane.position <= position
       );
 
-      updateLanes.forEach((lane, index) => {
-        updateLanePosition(lane.id, index - 1);
+      updateLanes.forEach((lane) => {
+        updateLanePosition(lane.id, lane.position - 1);
       });
 
       updateLanePosition(currentDragLane, position);
@@ -74,10 +76,11 @@ export const LaneArea = () => {
       let currentLane = lanes.find((lane) => lane.id === currentDragLane);
       let updateLanes = lanes.filter((lane) => 
         lane.id !== currentDragLane && 
-        lane.position <= currentLane.position);
+        lane.position <= currentLane.position &&
+        lane.position >= position);
 
-      updateLanes.forEach((lane, index) => {
-        updateLanePosition(lane.id, index + 1);
+      updateLanes.forEach((lane) => {
+        updateLanePosition(lane.id, lane.position + 1);
       });
 
       updateLanePosition(currentDragLane, position);
@@ -89,7 +92,7 @@ export const LaneArea = () => {
       <DropLaneArea currentDragLane={currentDragLane} onDrop={() => onDrop(0)}/>
       {lanes.map((lane)=> (
         <React.Fragment key={lane.position}>
-          <Lane id={lane.id} title={lane.title} deleteLane={deleteLane} refresh={getLanes} setCurrentDragLane={setCurrentDragLane}/>
+          <Lane id={lane.id} title={lane.title} deleteLane={deleteLane} refresh={getLanes} setCurrentDragLane={setCurrentDragLane} currentDragTask={currentDragTask} setCurrentDragTask={setCurrentDragTask} toggleModal={toggleModal}/>
           <DropLaneArea currentDragLane={currentDragLane} onDrop={() => onDrop(lane.position)}/>
         </React.Fragment>
       ))}
