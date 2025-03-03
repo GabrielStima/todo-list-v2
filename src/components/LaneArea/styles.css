@@ -1,6 +1,6 @@
 .lane-area {
-    width: 78vw;
-    height: 80vh;
+    width: calc(78vw - 60px);
+    height: calc(80vh - 60px);
     display: flex;
     margin: 30px;
     overflow: auto;
@@ -21,5 +21,21 @@
         &:hover {
             background-color: var(--principal-color);
         }
+    }
+
+    @media screen and (max-width: 1635px) {
+        width: calc(74vw - 60px);
+    }
+
+    @media screen and (max-width: 1380px) {
+        width: calc(70vw - 60px);
+    }
+
+    @media screen and (max-width: 1200px) {
+        width: calc(62vw - 60px);
+    }
+
+    @media screen and (max-width: 950px) {
+        width: calc(53vw - 60px);
     }
 }
