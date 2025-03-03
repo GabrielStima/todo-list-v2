@@ -1,37 +1,26 @@
 {
   "tasks": [
     {
-      "id": "090a4de2-9827-4ee7-8406-c8f56f1c3bb3",
+      "id": "b5a25e28-3338-4916-80f1-36fc2ffac023",
       "title": "Teste 1",
-      "description": "Teste ",
-      "column": "4aab3550-841d-407c-98cb-9c5299bcc768",
-      "position": 0
+      "description": "Teste",
+      "column": "b7c7299c-b6c9-4a05-9340-2278a95a27e2",
+      "position": -2
     },
     {
-      "id": "a222529c-a9eb-4887-a2fa-b6b4525af89e",
+      "id": "da51856c-52ba-44a2-9397-70f68a2a4064",
       "title": "Teste 2",
       "description": "",
-      "column": "115d6498-d022-4a68-a98e-952d9f71daf9",
-      "position": 2
+      "column": "b7c7299c-b6c9-4a05-9340-2278a95a27e2",
+      "position": 1
     },
     {
-      "id": "bcf5a6b8-7252-434b-aae0-e015cb23af8c",
-      "title": "New Task",
+      "id": "be74bed4-a38f-4f16-a1f7-5f58e746238b",
+      "title": "Teste 3",
       "description": "",
-      "column": "4aab3550-841d-407c-98cb-9c5299bcc768",
-      "position": -1
+      "column": "b7c7299c-b6c9-4a05-9340-2278a95a27e2",
+      "position": 2
     }
   ],
-  "lanes": [
-    {
-      "id": "4aab3550-841d-407c-98cb-9c5299bcc768",
-      "title": "Teste 1",
-      "position": 0
-    },
-    {
-      "id": "115d6498-d022-4a68-a98e-952d9f71daf9",
-      "title": "Teste 2",
-      "position": 1
-    }
-  ]
+  "lanes": []
 }

@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import './styles.css'
 
-export const DropTaskArea = ({onDrop}) => {
+export const DropTaskArea = ({onDrop, children}) => {
     const [showDropArea, setShowDropArea] = useState(false)
 
     return (
-      <section className={showDropArea ? "drop-task-area" : "hide-drop-task-area"}        
+      <section className={`${showDropArea ? "drop-task-area" : "hide-drop-task-area"} ${!children && "drop-here"}`}        
         onDragEnter={() => setShowDropArea(true)}
         onDragLeave={() => setShowDropArea(false)}
         onDrop={() => {
@@ -14,7 +14,7 @@ export const DropTaskArea = ({onDrop}) => {
         }}
         onDragOver={(event) => event.preventDefault()}
       >
-        Drop Here
+        {children ? children : 'Drop Here'}
       </section>
     )
   }

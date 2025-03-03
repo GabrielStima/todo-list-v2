@@ -168,18 +168,19 @@ export const Lane = ({
         </svg>
       </div>
       <div className="lane-body">
-        <DropTaskArea onDrop={() => onDrop(0, id)} />
+        {!tasks.length && <DropTaskArea onDrop={() => onDrop(0, id)}/>}
         {tasks.map((task) => (
           <React.Fragment key={task.id}>
-            <Task
-              id={task.id}
-              title={task.title}
-              description={task.description}
-              refresh={getTasks}
-              setCurrentDragTask={setCurrentDragTask}
-              toggleModal={toggleModal}
-            />
-            <DropTaskArea onDrop={() => onDrop(task.position, id)} />
+            <DropTaskArea onDrop={() => onDrop(task.position, id)}>
+              <Task
+                id={task.id}
+                title={task.title}
+                description={task.description}
+                refresh={getTasks}
+                setCurrentDragTask={setCurrentDragTask}
+                toggleModal={toggleModal}
+              />
+            </DropTaskArea>
           </React.Fragment>
         ))}
       </div>
