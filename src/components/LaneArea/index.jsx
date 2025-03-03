@@ -5,7 +5,7 @@ import {Lane} from '../elements/Lane'
 import {DropLaneArea} from '../elements/DropLaneArea'
 import './styles.css'
 
-export const LaneArea = ({toggleModal}) => { 
+export const LaneArea = ({toggleModal, setHasChanged, hasChanged}) => { 
   const [lanes, setLanes] = useState([]);
   const [currentDragLane, setCurrentDragLane] = useState(null);
   const [currentDragTask, setCurrentDragTask] = useState(null);
@@ -13,6 +13,12 @@ export const LaneArea = ({toggleModal}) => {
   useEffect(()=>{
     getLanes();
   }, [])
+
+  useEffect(() => {
+    setLanes([])
+    getLanes()
+    setHasChanged(false)
+  }, [hasChanged])
 
   const addLane = (e) => {
     e.preventDefault();
@@ -32,12 +38,9 @@ export const LaneArea = ({toggleModal}) => {
   }
 
   const getLanes = () => {
-    setLanes([])
     axios.get('http://localhost:3001/lanes')
     .then((response)=>{
-      let temp = response.data;
-      temp.sort((a, b) => a.position - b.position);
-      setLanes(temp)
+      sortingLanes(response.data);
     });
   }
 
@@ -48,12 +51,17 @@ export const LaneArea = ({toggleModal}) => {
     })
   }
 
+  const sortingLanes = (array = lanes) => {
+      let temp = [...array];
+      temp.sort((a, b) => a.position - b.position);
+      setLanes(temp)
+  }
+
   const updateLanePosition = (id, position) => {
     axios.patch(`http://localhost:3001/lanes/${id}`, {
       position
     }).then(()=>{
       getLanes()
-      setLanes([])
     })
   }
 
@@ -61,19 +69,21 @@ export const LaneArea = ({toggleModal}) => {
     if(!currentDragLane) return;
 
     let currentLane = lanes.find((lane) => lane.id === currentDragLane);
+
     if(position > currentLane.position) {
       let updateLanes = lanes.filter((lane) => 
         lane.id !== currentDragLane && 
+        lane.position >= currentLane.position &&
         lane.position <= position
       );
-
+      console.log('IF', updateLanes)
       updateLanes.forEach((lane) => {
         updateLanePosition(lane.id, lane.position - 1);
       });
 
       updateLanePosition(currentDragLane, position);
     } else {
-      let currentLane = lanes.find((lane) => lane.id === currentDragLane);
+      console.log('ELSE')
       let updateLanes = lanes.filter((lane) => 
         lane.id !== currentDragLane && 
         lane.position <= currentLane.position &&
@@ -88,21 +98,55 @@ export const LaneArea = ({toggleModal}) => {
   }
 
   return (
-    <div className='lane-area'>
-      <DropLaneArea currentDragLane={currentDragLane} onDrop={() => onDrop(0)}/>
-      {lanes.map((lane)=> (
-        <React.Fragment key={lane.position}>
-          <Lane id={lane.id} title={lane.title} deleteLane={deleteLane} refresh={getLanes} setCurrentDragLane={setCurrentDragLane} currentDragTask={currentDragTask} setCurrentDragTask={setCurrentDragTask} toggleModal={toggleModal}/>
-          <DropLaneArea currentDragLane={currentDragLane} onDrop={() => onDrop(lane.position)}/>
+    <div className="lane-area">
+      <DropLaneArea
+        currentDragLane={currentDragLane}
+        onDrop={() => onDrop(0)}
+      />
+      {lanes.map((lane) => (
+        <React.Fragment key={lane.id}>
+          <Lane
+            id={lane.id}
+            title={lane.title}
+            deleteLane={deleteLane}
+            refresh={getLanes}
+            setCurrentDragLane={setCurrentDragLane}
+            currentDragTask={currentDragTask}
+            setCurrentDragTask={setCurrentDragTask}
+            toggleModal={toggleModal}
+            setHasChanged={setHasChanged}
+          />
+          <DropLaneArea
+            currentDragLane={currentDragLane}
+            onDrop={() => onDrop(lane.position)}
+          />
         </React.Fragment>
       ))}
-      <button className='add-lane' onClick={addLane}>
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 5V19" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M5 12H19" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <button className="add-lane" onClick={addLane}>
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12 5V19"
+            stroke="white"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M5 12H19"
+            stroke="white"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
         </svg>
         Add new list
       </button>
     </div>
-  )
+  );
 }

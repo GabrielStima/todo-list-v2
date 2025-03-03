@@ -14,7 +14,8 @@ export const Lane = ({
   setCurrentDragLane,
   currentDragTask, 
   setCurrentDragTask,
-  toggleModal
+  toggleModal,
+  setHasChanged
 }) => {
   const [laneTitle, setLaneTitle] = useState(title);
   const [tasks, setTasks] = useState([]);
@@ -25,11 +26,15 @@ export const Lane = ({
 
   const getTasks = () => {
     axios.get(`http://localhost:3001/tasks?column=${id}`).then((response) => {
-      let temp = response.data;
-      temp.sort((a, b) => a.position - b.position);
-      setTasks(temp);
+      sortingTask(response.data);
     });
   };
+
+  const sortingTask = (array = tasks) => {
+    let temp = [...array];
+    temp.sort((a, b) => a.position - b.position);
+    setTasks(temp)
+}
 
   const addTask = (e) => {
     e.preventDefault();
@@ -72,7 +77,6 @@ export const Lane = ({
         position,
       })
       .then(() => {
-        setTasks([]);
         getTasks();
       });
   };
@@ -88,7 +92,6 @@ export const Lane = ({
 
   const onDropSameColumn = (position, currentTask) => {
     if (position > currentTask.position) {
-      console.log('IF')
       let updateTasks = tasks.filter(
         (task) => task.id !== currentDragTask && task.position <= position
       );
@@ -99,7 +102,6 @@ export const Lane = ({
 
       updateTaskPosition(currentDragTask, position);
     } else {
-      console.log('ELSE')
       let updateTask = tasks.filter(
         (task) =>
           task.id !== currentDragTask &&
@@ -119,6 +121,7 @@ export const Lane = ({
   const onDropDifferentColumn = async (id, position, columnId) => {
       const currentTask = await updateTaskColumn(id, columnId);
       onDropSameColumn(position, currentTask);
+      setHasChanged(true);
       refresh();
   };
 
@@ -167,7 +170,7 @@ export const Lane = ({
       <div className="lane-body">
         <DropTaskArea onDrop={() => onDrop(0, id)} />
         {tasks.map((task) => (
-          <React.Fragment key={task.position}>
+          <React.Fragment key={task.id}>
             <Task
               id={task.id}
               title={task.title}

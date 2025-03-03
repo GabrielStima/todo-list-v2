@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios';
 import './styles.css'
 
-export const Modal = ({task, close}) => { 
+export const Modal = ({task, close, setHasChanged}) => { 
     const [description, setDescription] = useState('');
 
     useEffect(() => {
@@ -16,6 +16,7 @@ export const Modal = ({task, close}) => {
             description: description
         },{headers: {'Content-Type': 'application/json'}}).then(() => {
             close();
+            setHasChanged(true)
         })
         
     }
@@ -25,6 +26,7 @@ export const Modal = ({task, close}) => {
 
         axios.delete(`http://localhost:3001/tasks/${task.id}`).then(() => {
             close();
+            setHasChanged(true)
         })
     }
 
