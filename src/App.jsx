@@ -8,6 +8,7 @@ import "./assets/css/index.css";
 
 export const App = () => {
   const [modalOpen, setModalOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
   const [hasChanged, setHasChanged] = useState(false);
   const [taskModal, setTaskModal] = useState({});
 
@@ -20,7 +21,7 @@ export const App = () => {
     <div className="app">
       <header>
         <Navbar />
-        <Sidebar />
+        <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}/>
       </header>
       <main className="content">
         <Projectbar />
@@ -28,6 +29,7 @@ export const App = () => {
           toggleModal={toggleModal}
           setHasChanged={setHasChanged}
           hasChanged={hasChanged}
+          sidebarOpen={sidebarOpen}
         />
         {modalOpen && (
           <Modal

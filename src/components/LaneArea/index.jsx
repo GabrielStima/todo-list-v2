@@ -5,7 +5,7 @@ import {Lane} from '../elements/Lane'
 import {DropLaneArea} from '../elements/DropLaneArea'
 import './styles.css'
 
-export const LaneArea = ({toggleModal, setHasChanged, hasChanged}) => { 
+export const LaneArea = ({toggleModal, setHasChanged, hasChanged, sidebarOpen}) => { 
   const [lanes, setLanes] = useState([]);
   const [currentDragLane, setCurrentDragLane] = useState(null);
   const [currentDragTask, setCurrentDragTask] = useState(null);
@@ -98,7 +98,7 @@ export const LaneArea = ({toggleModal, setHasChanged, hasChanged}) => {
   }
 
   return (
-    <div className="lane-area">
+    <div className={`lane-area ${!sidebarOpen ? 'sidebar-close' : ''}`}>
       <DropLaneArea
         currentDragLane={currentDragLane}
         onDrop={() => onDrop(0)}

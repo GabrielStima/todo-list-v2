@@ -6,6 +6,10 @@
     overflow: auto;
     white-space: nowrap;
     
+    &.sidebar-close {
+        width: calc(93vw - 60px);
+    }
+
     .add-lane {
         height: 60px;
         padding: 30px;
@@ -37,5 +41,25 @@
 
     @media screen and (max-width: 950px) {
         width: calc(53vw - 60px);
+
+        &.sidebar-close {
+            width: calc(90vw - 60px);
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        width: calc(55vw - 60px);
+
+        &.sidebar-close {
+            width: calc(80vw - 60px);
+        }
+    }
+
+    @media screen and (max-width: 574px) {
+        width: calc(70vw - 60px);
+    }
+
+    @media screen and (max-width: 425px) {
+        width: calc(100vw - 60px);
     }
 }

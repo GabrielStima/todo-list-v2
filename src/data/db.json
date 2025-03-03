@@ -1,4 +1,15 @@
 {
   "tasks": [],
-  "lanes": []
+  "lanes": [
+    {
+      "id": "315817c8-6877-4c87-81c9-802aafbc5602",
+      "title": "New Lane",
+      "position": 0
+    },
+    {
+      "id": "85d2e54d-8d75-48c5-b1c0-3387587d076b",
+      "title": "New Lane",
+      "position": 1
+    }
+  ]
 }

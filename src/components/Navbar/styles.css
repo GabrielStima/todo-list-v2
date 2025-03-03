@@ -19,4 +19,24 @@
         align-items: center;
         margin-right: 30px;
     }
+
+    @media screen and (max-width: 574px) {
+        .menu {
+            li {
+                margin-right: 20px;
+            }
+        }
+    }
+
+    @media screen and (max-width: 425px) {
+        .menu {
+            li {
+                display: none;
+            }
+        }
+
+        .profile {
+            width: 30px;
+        }
+    }
 }

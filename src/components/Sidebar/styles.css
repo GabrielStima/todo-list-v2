@@ -51,29 +51,24 @@
         }
     }
 
-    @media screen and (max-width: 425px) {
+    @media screen and (max-width: 768px) {
+        width: 250px;
+    }
+
+    @media screen and (max-width: 574px) {
+        width: 150px;
+
         img {
-            width: 150px;
-            height: 120px;
+            width: 100px;
+            height: 70px;
+        }
+
+        .footer {
+            font-size: 12px;
         }
     }
 
-    @media screen and (max-width: 375px) {
-        &.closed {
-            width: 50px;
-        }
-
-        svg {
-            top: 60px;
-            right: 0;
-        }
-    }
-
-    @media screen and (max-width: 320px) {
-        svg {
-            top: 50px;
-            width: 40px;
-            height: 40px;
-        }
+    @media screen and (max-width: 425px) {
+       display: none;
     }
 }
